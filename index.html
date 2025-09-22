@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>بحث عن الذكاء الاصطناعي</title>
+  <meta charset="UTF-8" />
+  <title>الذكاء الاصطناعي - AI</title>
+  <!-- React & Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
   <style>
     * {
       margin: 0;
@@ -10,237 +15,183 @@
       box-sizing: border-box;
       font-family: 'Tahoma', sans-serif;
     }
+
     body {
-      background: #f8fafc;
-      color: #1e293b;
-      overflow-x: hidden;
+      background: linear-gradient(135deg, #3a0ca3, #4361ee, #7209b7);
+      color: #fff;
+      line-height: 1.6;
     }
 
-    /* ===== Header ===== */
     header {
-      background: #0f172a;
-      color: #fff;
-      padding: 15px 50px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed;
+      position: sticky;
       top: 0;
-      width: 100%;
       z-index: 1000;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
     }
+
     header h1 {
       font-size: 22px;
-      animation: slideDown 1s ease;
+      font-weight: bold;
     }
+
     nav a {
-      color: #fff;
-      margin: 0 12px;
+      margin: 0 10px;
       text-decoration: none;
-      transition: 0.3s;
-      font-size: 15px;
-    }
-    nav a:hover {
-      color: #38bdf8;
-    }
-
-    /* ===== Hero ===== */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-        url("https://images.unsplash.com/photo-1581091012184-5c8af91b8fda?w=1600") no-repeat center/cover;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      padding: 0 20px;
-    }
-    .hero h2 {
-      font-size: 48px;
-      margin-bottom: 15px;
-      animation: fadeInUp 1.2s ease;
-    }
-    .hero p {
-      font-size: 20px;
-      margin-bottom: 25px;
-      max-width: 600px;
-      animation: fadeInUp 1.6s ease;
-    }
-    .btn {
-      background: #38bdf8;
       color: #fff;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s;
-      animation: fadeInUp 2s ease;
-    }
-    .btn:hover {
-      background: #0284c7;
-      transform: scale(1.05);
+      font-weight: bold;
+      transition: color 0.3s;
     }
 
-    /* ===== Sections ===== */
+    nav a:hover {
+      color: #f72585;
+    }
+
     section {
-      padding: 80px 50px;
+      padding: 50px 20px;
       text-align: center;
-    }
-    section h3 {
-      font-size: 32px;
-      margin-bottom: 25px;
-      color: #0f172a;
-      position: relative;
-      display: inline-block;
-    }
-    section h3::after {
-      content: '';
-      width: 60%;
-      height: 3px;
-      background: #38bdf8;
-      position: absolute;
-      bottom: -8px;
-      right: 20%;
-      border-radius: 2px;
-    }
-    section p, section ul {
-      font-size: 18px;
       max-width: 900px;
       margin: auto;
-      line-height: 1.8;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: 0.8s;
-      text-align: right;
-    }
-    section.show p, section.show ul {
-      opacity: 1;
-      transform: translateY(0);
     }
 
-    /* ===== Footer ===== */
-    footer {
-      background: #0f172a;
-      color: #fff;
+    section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .news, .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
       padding: 20px;
-      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
     }
 
-    /* ===== Animations ===== */
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
+    .card:hover {
+      transform: translateY(-5px);
     }
-    @keyframes slideDown {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
+
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+      nav {
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="root"></div>
 
-  <!-- Header -->
-  <header>
-    <h1>بحث الذكاء الاصطناعي</h1>
-    <nav>
-      <a href="#intro">المقدمة</a>
-      <a href="#problem">مشكلة البحث</a>
-      <a href="#goals">أهداف البحث</a>
-      <a href="#methodology">المنهجية</a>
-      <a href="#main">المحاور الرئيسية</a>
-      <a href="#conclusion">الخاتمة</a>
-    </nav>
-  </header>
+  <script type="text/babel">
+    const App = () => {
+      return (
+        <div>
+          {/* Navbar */}
+          <header>
+            <h1>AI World</h1>
+            <nav>
+              <a href="#home">الرئيسية</a>
+              <a href="#news">الأخبار</a>
+              <a href="#services">الخدمات التعليمية</a>
+              <a href="#about">من نحن</a>
+            </nav>
+          </header>
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <h2>مرحباً بك في بحث الذكاء الاصطناعي</h2>
-    <p>تعرف على رحلة تطور الذكاء الاصطناعي من التعلم الآلي إلى التعلم العميق وأهم التطبيقات المستقبلية.</p>
-    <button class="btn" onclick="showMsg()">إعرف المزيد</button>
-  </div>
+          {/* Home */}
+          <section id="home">
+            <h2>مرحباً بك في عالم الذكاء الاصطناعي</h2>
+            <p>اكتشف أحدث المعلومات والتطورات حول الذكاء الاصطناعي وتعلم كيف تدخل هذا العالم المذهل.</p>
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995" alt="AI Image" style={{borderRadius:'12px', maxWidth:'100%'}} />
+          </section>
 
-  <!-- Introduction -->
-  <section id="intro">
-    <h3>المقدمة</h3>
-    <p>
-      شهد العالم خلال العقود الأخيرة ثورة في مجال الذكاء الاصطناعي، حيث انتقل من أنظمة بسيطة تعتمد على القواعد والبرمجة التقليدية إلى أنظمة قادرة على التعلّم الذاتي باستخدام البيانات. ويُعدّ الانتقال من التعلّم الآلي (Machine Learning) إلى التعلّم العميق (Deep Learning) نقطة تحول أساسية في هذا المجال.
-    </p>
-  </section>
+          {/* News */}
+          <section id="news">
+            <h2>أحدث الأخبار</h2>
+            <div className="news">
+              <div className="card">
+                <img src="https://images.unsplash.com/photo-1667488454280-92f2189e50e1" alt="AI News"/>
+                <h3>تطورات جديدة في ChatGPT</h3>
+                <p>أحدث إصدارات ChatGPT تقدم قدرات متقدمة في الفهم والتفاعل.</p>
+              </div>
+              <div className="card">
+                <img src="https://images.unsplash.com/photo-1633356122102-04a7bdf6a08a" alt="AI News"/>
+                <h3>الذكاء الاصطناعي في الطب</h3>
+                <p>استخدام تقنيات AI للكشف المبكر عن الأمراض وإنقاذ الأرواح.</p>
+              </div>
+              <div className="card">
+                <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479" alt="AI News"/>
+                <h3>الروبوتات الذكية</h3>
+                <p>روبوتات جديدة قادرة على التفاعل مع البشر بطرق طبيعية أكثر.</p>
+              </div>
+            </div>
+          </section>
 
-  <!-- Problem Section -->
-  <section id="problem">
-    <h3>مشكلة البحث</h3>
-    <p>
-      رغم التطور الكبير في الذكاء الاصطناعي، ما يزال هناك حاجة لفهم مراحل تطوره، وكيف ساهم التعلّم العميق في تجاوز محدوديات التعلّم الآلي التقليدي.
-    </p>
-  </section>
+          {/* Services */}
+          <section id="services">
+            <h2>الخدمات التعليمية</h2>
+            <div className="services">
+              <div className="card">
+                <h3>مقدمة في الذكاء الاصطناعي</h3>
+                <p>دورة شاملة للتعرف على أساسيات AI وأهم تطبيقاته.</p>
+              </div>
+              <div className="card">
+                <h3>تعلم الآلة (Machine Learning)</h3>
+                <p>كورسات عملية لفهم الخوارزميات وكيفية تدريب النماذج.</p>
+              </div>
+              <div className="card">
+                <h3>تعلم الشبكات العصبية</h3>
+                <p>اكتشف كيفية بناء نماذج Deep Learning باستخدام مكتبات متقدمة.</p>
+              </div>
+            </div>
+          </section>
 
-  <!-- Goals Section -->
-  <section id="goals">
-    <h3>أهداف البحث</h3>
-    <ul>
-      <li>توضيح الفروق بين التعلّم الآلي والتعلّم العميق.</li>
-      <li>عرض أهم التطبيقات العملية لكل منهما.</li>
-      <li>إبراز التحديات المستقبلية المرتبطة باستخدام هذه التقنيات.</li>
-    </ul>
-  </section>
+          {/* About */}
+          <section id="about">
+            <h2>من نحن</h2>
+            <p>
+              نحن فريق شغوف بالذكاء الاصطناعي نهدف إلى نشر المعرفة وتقديم محتوى تعليمي
+              مميز يساعد الجميع على دخول هذا المجال المتطور.
+            </p>
+          </section>
 
-  <!-- Methodology Section -->
-  <section id="methodology">
-    <h3>منهجية البحث</h3>
-    <ul>
-      <li>المنهج الوصفي التحليلي: من خلال مراجعة الأدبيات والدراسات السابقة حول الذكاء الاصطناعي.</li>
-      <li>المقارنة: بين خصائص التعلّم الآلي والتعلّم العميق.</li>
-    </ul>
-  </section>
+          {/* Footer */}
+          <footer>
+            <p>© 2025 موقع AI World - جميع الحقوق محفوظة</p>
+          </footer>
+        </div>
+      );
+    };
 
-  <!-- Main Topics Section -->
-  <section id="main">
-    <h3>المحاور الرئيسية</h3>
-    <ul>
-      <li>مفهوم التعلّم الآلي: آلية عمله وأبرز تقنياته (التعلّم الموجّه وغير الموجّه).</li>
-      <li>مفهوم التعلّم العميق: الشبكات العصبية الاصطناعية وأهم ميزاتها.</li>
-      <li>أوجه التشابه والاختلاف: الدقة، حجم البيانات المطلوب، قوة المعالجة.</li>
-      <li>التطبيقات العملية: الصحة، التعليم، المواصلات، الأعمال.</li>
-      <li>التحديات المستقبلية: الأخلاقيات، خصوصية البيانات، متطلبات الحوسبة.</li>
-    </ul>
-  </section>
-
-  <!-- Conclusion Section -->
-  <section id="conclusion">
-    <h3>الخاتمة</h3>
-    <p>
-      يمثل التعلّم العميق مرحلة متقدمة من رحلة الذكاء الاصطناعي، حيث أتاح إمكانيات غير مسبوقة في معالجة الصور، اللغة، واتخاذ القرارات. ومع ذلك، يبقى التحدي في تحقيق توازن بين الابتكار والاعتبارات الأخلاقية لضمان أن يخدم الذكاء الاصطناعي البشرية بشكل إيجابي.
-    </p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 بحث الذكاء الاصطناعي - جميع الحقوق محفوظة</p>
-  </footer>
-
-  <script>
-    // رسالة عند الضغط على الزر
-    function showMsg() {
-      alert("🤖 الذكاء الاصطناعي هو المستقبل المشرق!");
-    }
-
-    // أنيميشن عند التمرير
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    }, { threshold: 0.2 });
-
-    sections.forEach(sec => observer.observe(sec));
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
-
 </body>
 </html>
